@@ -113,34 +113,122 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+type QueryGetSystemInfoRequest struct {
+}
+
+func (m *QueryGetSystemInfoRequest) Reset()         { *m = QueryGetSystemInfoRequest{} }
+func (m *QueryGetSystemInfoRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetSystemInfoRequest) ProtoMessage()    {}
+func (*QueryGetSystemInfoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_19860b8f7e48e009, []int{2}
+}
+func (m *QueryGetSystemInfoRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetSystemInfoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetSystemInfoRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetSystemInfoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetSystemInfoRequest.Merge(m, src)
+}
+func (m *QueryGetSystemInfoRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetSystemInfoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetSystemInfoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetSystemInfoRequest proto.InternalMessageInfo
+
+type QueryGetSystemInfoResponse struct {
+	SystemInfo SystemInfo `protobuf:"bytes,1,opt,name=SystemInfo,proto3" json:"SystemInfo"`
+}
+
+func (m *QueryGetSystemInfoResponse) Reset()         { *m = QueryGetSystemInfoResponse{} }
+func (m *QueryGetSystemInfoResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetSystemInfoResponse) ProtoMessage()    {}
+func (*QueryGetSystemInfoResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_19860b8f7e48e009, []int{3}
+}
+func (m *QueryGetSystemInfoResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetSystemInfoResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetSystemInfoResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetSystemInfoResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetSystemInfoResponse.Merge(m, src)
+}
+func (m *QueryGetSystemInfoResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetSystemInfoResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetSystemInfoResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetSystemInfoResponse proto.InternalMessageInfo
+
+func (m *QueryGetSystemInfoResponse) GetSystemInfo() SystemInfo {
+	if m != nil {
+		return m.SystemInfo
+	}
+	return SystemInfo{}
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "alice.checkers.checkers.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "alice.checkers.checkers.QueryParamsResponse")
+	proto.RegisterType((*QueryGetSystemInfoRequest)(nil), "alice.checkers.checkers.QueryGetSystemInfoRequest")
+	proto.RegisterType((*QueryGetSystemInfoResponse)(nil), "alice.checkers.checkers.QueryGetSystemInfoResponse")
 }
 
 func init() { proto.RegisterFile("checkers/checkers/query.proto", fileDescriptor_19860b8f7e48e009) }
 
 var fileDescriptor_19860b8f7e48e009 = []byte{
-	// 299 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4d, 0xce, 0x48, 0x4d,
-	0xce, 0x4e, 0x2d, 0x2a, 0xd6, 0x87, 0x33, 0x0a, 0x4b, 0x53, 0x8b, 0x2a, 0xf5, 0x0a, 0x8a, 0xf2,
-	0x4b, 0xf2, 0x85, 0xc4, 0x13, 0x73, 0x32, 0x93, 0x53, 0xf5, 0x60, 0x72, 0x70, 0x86, 0x94, 0x48,
-	0x7a, 0x7e, 0x7a, 0x3e, 0x58, 0x8d, 0x3e, 0x88, 0x05, 0x51, 0x2e, 0x25, 0x93, 0x9e, 0x9f, 0x9f,
-	0x9e, 0x93, 0xaa, 0x9f, 0x58, 0x90, 0xa9, 0x9f, 0x98, 0x97, 0x97, 0x5f, 0x92, 0x58, 0x92, 0x99,
-	0x9f, 0x57, 0x0c, 0x95, 0xd5, 0x4a, 0xce, 0x2f, 0xce, 0xcd, 0x2f, 0xd6, 0x4f, 0x4a, 0x2c, 0x4e,
-	0x85, 0xd8, 0xa2, 0x5f, 0x66, 0x98, 0x94, 0x5a, 0x92, 0x68, 0xa8, 0x5f, 0x90, 0x98, 0x9e, 0x99,
-	0x07, 0x56, 0x0c, 0x55, 0x2b, 0x87, 0xe9, 0xae, 0x82, 0xc4, 0xa2, 0xc4, 0x5c, 0xa8, 0x59, 0x4a,
-	0x22, 0x5c, 0x42, 0x81, 0x20, 0x13, 0x02, 0xc0, 0x82, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25,
-	0x4a, 0x21, 0x5c, 0xc2, 0x28, 0xa2, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x42, 0xb6, 0x5c, 0x6c,
-	0x10, 0xcd, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0xdc, 0x46, 0xf2, 0x7a, 0x38, 0xbc, 0xa5, 0x07, 0xd1,
-	0xe8, 0xc4, 0x72, 0xe2, 0x9e, 0x3c, 0x43, 0x10, 0x54, 0x93, 0xd1, 0x34, 0x46, 0x2e, 0x56, 0xb0,
-	0xb1, 0x42, 0x3d, 0x8c, 0x5c, 0x6c, 0x10, 0x25, 0x42, 0xda, 0x38, 0xcd, 0xc0, 0x74, 0x97, 0x94,
-	0x0e, 0x71, 0x8a, 0x21, 0xce, 0x55, 0x52, 0x6f, 0xba, 0xfc, 0x64, 0x32, 0x93, 0xa2, 0x90, 0xbc,
-	0x3e, 0x58, 0x97, 0x3e, 0xae, 0xa0, 0x70, 0x72, 0x39, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39,
-	0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63,
-	0x39, 0x86, 0x28, 0xad, 0xf4, 0xcc, 0x92, 0x8c, 0xd2, 0x24, 0xbd, 0xe4, 0xfc, 0x5c, 0x74, 0x43,
-	0x2a, 0x10, 0xcc, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0x70, 0x88, 0x1a, 0x03, 0x02, 0x00,
-	0x00, 0xff, 0xff, 0xd5, 0x9f, 0xe8, 0xe2, 0x0b, 0x02, 0x00, 0x00,
+	// 387 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0xbf, 0x4e, 0xeb, 0x30,
+	0x14, 0xc6, 0x93, 0xea, 0xde, 0x0e, 0xbe, 0x9b, 0x6f, 0x25, 0x20, 0x40, 0x0a, 0x29, 0x02, 0x54,
+	0xaa, 0x58, 0x6d, 0x67, 0x96, 0x0a, 0x09, 0x75, 0x83, 0xc2, 0xc4, 0x82, 0x9c, 0xc8, 0x75, 0x23,
+	0x1a, 0x3b, 0x8d, 0x5d, 0x44, 0x57, 0x66, 0x06, 0x24, 0x1e, 0x81, 0xd7, 0xe0, 0x01, 0x3a, 0x56,
+	0x62, 0x61, 0x42, 0xa8, 0xe5, 0x41, 0x50, 0x1d, 0xf7, 0x0f, 0xb4, 0x41, 0xb0, 0x1d, 0xf9, 0x7c,
+	0xdf, 0xf9, 0x7e, 0xb6, 0x0f, 0xd8, 0xf4, 0x5b, 0xc4, 0xbf, 0x22, 0xb1, 0x40, 0xd3, 0xa2, 0xd3,
+	0x25, 0x71, 0xcf, 0x8d, 0x62, 0x2e, 0x39, 0x5c, 0xc1, 0xed, 0xc0, 0x27, 0xee, 0xa4, 0x37, 0x2d,
+	0xac, 0x1c, 0xe5, 0x94, 0x2b, 0x0d, 0x1a, 0x57, 0x89, 0xdc, 0xda, 0xa0, 0x9c, 0xd3, 0x36, 0x41,
+	0x38, 0x0a, 0x10, 0x66, 0x8c, 0x4b, 0x2c, 0x03, 0xce, 0x84, 0xee, 0x16, 0x7d, 0x2e, 0x42, 0x2e,
+	0x90, 0x87, 0x05, 0x49, 0x52, 0xd0, 0x75, 0xd9, 0x23, 0x12, 0x97, 0x51, 0x84, 0x69, 0xc0, 0x94,
+	0x58, 0x6b, 0xed, 0x45, 0xae, 0x08, 0xc7, 0x38, 0x9c, 0xcc, 0x2a, 0x2c, 0xf6, 0x45, 0x4f, 0x48,
+	0x12, 0x5e, 0x06, 0xac, 0xa9, 0x71, 0x9c, 0x1c, 0x80, 0xa7, 0xe3, 0x98, 0x13, 0xe5, 0x6c, 0x90,
+	0x4e, 0x97, 0x08, 0xe9, 0x9c, 0x83, 0xff, 0x9f, 0x4e, 0x45, 0xc4, 0x99, 0x20, 0xf0, 0x10, 0x64,
+	0x93, 0x84, 0x55, 0x73, 0xcb, 0xdc, 0xff, 0x57, 0xc9, 0xbb, 0x29, 0x77, 0x77, 0x13, 0x63, 0xed,
+	0x4f, 0xff, 0x35, 0x6f, 0x34, 0xb4, 0xc9, 0x59, 0x07, 0x6b, 0x6a, 0xea, 0x31, 0x91, 0x67, 0x0a,
+	0xa4, 0xce, 0x9a, 0x7c, 0x12, 0x49, 0x81, 0xb5, 0xac, 0xa9, 0x93, 0xeb, 0x00, 0xcc, 0x4e, 0x75,
+	0x7a, 0x21, 0x35, 0x7d, 0x26, 0xd5, 0x04, 0x73, 0xe6, 0xca, 0x53, 0x06, 0xfc, 0x55, 0x49, 0xf0,
+	0xce, 0x04, 0xd9, 0x04, 0x14, 0x1e, 0xa4, 0xce, 0x5a, 0x7c, 0x1d, 0xab, 0xf4, 0x33, 0x71, 0x82,
+	0xee, 0xec, 0xdd, 0x3e, 0xbf, 0x3f, 0x64, 0xb6, 0x61, 0x1e, 0x29, 0x17, 0x4a, 0xfb, 0x35, 0xf8,
+	0x68, 0xce, 0x5f, 0x12, 0x56, 0xbe, 0x4f, 0x59, 0xf6, 0x88, 0x56, 0xf5, 0x57, 0x1e, 0x0d, 0x58,
+	0x52, 0x80, 0xbb, 0x70, 0x27, 0x15, 0x70, 0x6e, 0x6d, 0x6a, 0x47, 0xfd, 0xa1, 0x6d, 0x0e, 0x86,
+	0xb6, 0xf9, 0x36, 0xb4, 0xcd, 0xfb, 0x91, 0x6d, 0x0c, 0x46, 0xb6, 0xf1, 0x32, 0xb2, 0x8d, 0x8b,
+	0x22, 0x0d, 0x64, 0xab, 0xeb, 0xb9, 0x3e, 0x0f, 0xbf, 0x4e, 0xba, 0x99, 0x95, 0xb2, 0x17, 0x11,
+	0xe1, 0x65, 0xd5, 0xf6, 0x55, 0x3f, 0x02, 0x00, 0x00, 0xff, 0xff, 0xb9, 0xe5, 0x3f, 0xce, 0x5c,
+	0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -157,6 +245,8 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a SystemInfo by index.
+	SystemInfo(ctx context.Context, in *QueryGetSystemInfoRequest, opts ...grpc.CallOption) (*QueryGetSystemInfoResponse, error)
 }
 
 type queryClient struct {
@@ -176,10 +266,21 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) SystemInfo(ctx context.Context, in *QueryGetSystemInfoRequest, opts ...grpc.CallOption) (*QueryGetSystemInfoResponse, error) {
+	out := new(QueryGetSystemInfoResponse)
+	err := c.cc.Invoke(ctx, "/alice.checkers.checkers.Query/SystemInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a SystemInfo by index.
+	SystemInfo(context.Context, *QueryGetSystemInfoRequest) (*QueryGetSystemInfoResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -188,6 +289,9 @@ type UnimplementedQueryServer struct {
 
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (*UnimplementedQueryServer) SystemInfo(ctx context.Context, req *QueryGetSystemInfoRequest) (*QueryGetSystemInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SystemInfo not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -212,6 +316,24 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_SystemInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSystemInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).SystemInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/alice.checkers.checkers.Query/SystemInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).SystemInfo(ctx, req.(*QueryGetSystemInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "alice.checkers.checkers.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -219,6 +341,10 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "SystemInfo",
+			Handler:    _Query_SystemInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -281,6 +407,62 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetSystemInfoRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetSystemInfoRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetSystemInfoRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetSystemInfoResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetSystemInfoResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetSystemInfoResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.SystemInfo.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -308,6 +490,26 @@ func (m *QueryParamsResponse) Size() (n int) {
 	var l int
 	_ = l
 	l = m.Params.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetSystemInfoRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryGetSystemInfoResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.SystemInfo.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
@@ -427,6 +629,139 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Params.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetSystemInfoRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetSystemInfoRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetSystemInfoRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetSystemInfoResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetSystemInfoResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetSystemInfoResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SystemInfo", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.SystemInfo.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

@@ -1,23 +1,30 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { SystemInfo } from "./system_info";
 
 export const protobufPackage = "alice.checkers.checkers";
 
 /** GenesisState defines the checkers module's genesis state. */
 export interface GenesisState {
+  params:
+    | Params
+    | undefined;
   /** this line is used by starport scaffolding # genesis/proto/state */
-  params: Params | undefined;
+  systemInfo: SystemInfo | undefined;
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined };
+  return { params: undefined, systemInfo: undefined };
 }
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.systemInfo !== undefined) {
+      SystemInfo.encode(message.systemInfo, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -32,6 +39,9 @@ export const GenesisState = {
         case 1:
           message.params = Params.decode(reader, reader.uint32());
           break;
+        case 2:
+          message.systemInfo = SystemInfo.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -41,12 +51,17 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+    return {
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+      systemInfo: isSet(object.systemInfo) ? SystemInfo.fromJSON(object.systemInfo) : undefined,
+    };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.systemInfo !== undefined
+      && (obj.systemInfo = message.systemInfo ? SystemInfo.toJSON(message.systemInfo) : undefined);
     return obj;
   },
 
@@ -54,6 +69,9 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
+      : undefined;
+    message.systemInfo = (object.systemInfo !== undefined && object.systemInfo !== null)
+      ? SystemInfo.fromPartial(object.systemInfo)
       : undefined;
     return message;
   },
