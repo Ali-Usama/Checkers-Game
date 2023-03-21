@@ -29,8 +29,16 @@ func (k msgServer) RejectGame(goCtx context.Context, msg *types.MsgRejectGame) (
 		return nil, sdkerrors.Wrapf(types.ErrCreatorNotPlayer, "%s", msg.Creator)
 	}
 
-	// remove the game
+	// remove a game from FIFO
+	systemInfo, found := k.Keeper.GetSystemInfo(ctx)
+	if !found {
+		panic("SystemInfo not found")
+	}
+	k.Keeper.RemoveFromFifo(ctx, &storedGame, &systemInfo)
+
+	// remove the game and update the system info
 	k.Keeper.RemoveStoredGame(ctx, msg.GameIndex)
+	k.Keeper.SetSystemInfo(ctx, systemInfo)
 
 	// emit the relevant event
 	ctx.EventManager().EmitEvent(
