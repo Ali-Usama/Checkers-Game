@@ -11,10 +11,25 @@ export interface StoredGame {
   black: string;
   red: string;
   moveCount: number;
+  /** pertains to the FIFO. Towards head */
+  beforeIndex: string;
+  /** pertains to the FIFO. Towards tail */
+  afterIndex: string;
+  deadline: string;
 }
 
 function createBaseStoredGame(): StoredGame {
-  return { index: "", board: "", turn: "", black: "", red: "", moveCount: 0 };
+  return {
+    index: "",
+    board: "",
+    turn: "",
+    black: "",
+    red: "",
+    moveCount: 0,
+    beforeIndex: "",
+    afterIndex: "",
+    deadline: "",
+  };
 }
 
 export const StoredGame = {
@@ -36,6 +51,15 @@ export const StoredGame = {
     }
     if (message.moveCount !== 0) {
       writer.uint32(48).uint64(message.moveCount);
+    }
+    if (message.beforeIndex !== "") {
+      writer.uint32(58).string(message.beforeIndex);
+    }
+    if (message.afterIndex !== "") {
+      writer.uint32(66).string(message.afterIndex);
+    }
+    if (message.deadline !== "") {
+      writer.uint32(74).string(message.deadline);
     }
     return writer;
   },
@@ -65,6 +89,15 @@ export const StoredGame = {
         case 6:
           message.moveCount = longToNumber(reader.uint64() as Long);
           break;
+        case 7:
+          message.beforeIndex = reader.string();
+          break;
+        case 8:
+          message.afterIndex = reader.string();
+          break;
+        case 9:
+          message.deadline = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -81,6 +114,9 @@ export const StoredGame = {
       black: isSet(object.black) ? String(object.black) : "",
       red: isSet(object.red) ? String(object.red) : "",
       moveCount: isSet(object.moveCount) ? Number(object.moveCount) : 0,
+      beforeIndex: isSet(object.beforeIndex) ? String(object.beforeIndex) : "",
+      afterIndex: isSet(object.afterIndex) ? String(object.afterIndex) : "",
+      deadline: isSet(object.deadline) ? String(object.deadline) : "",
     };
   },
 
@@ -92,6 +128,9 @@ export const StoredGame = {
     message.black !== undefined && (obj.black = message.black);
     message.red !== undefined && (obj.red = message.red);
     message.moveCount !== undefined && (obj.moveCount = Math.round(message.moveCount));
+    message.beforeIndex !== undefined && (obj.beforeIndex = message.beforeIndex);
+    message.afterIndex !== undefined && (obj.afterIndex = message.afterIndex);
+    message.deadline !== undefined && (obj.deadline = message.deadline);
     return obj;
   },
 
@@ -103,6 +142,9 @@ export const StoredGame = {
     message.black = object.black ?? "";
     message.red = object.red ?? "";
     message.moveCount = object.moveCount ?? 0;
+    message.beforeIndex = object.beforeIndex ?? "";
+    message.afterIndex = object.afterIndex ?? "";
+    message.deadline = object.deadline ?? "";
     return message;
   },
 };
