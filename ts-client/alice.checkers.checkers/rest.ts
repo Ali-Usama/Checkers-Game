@@ -76,6 +76,7 @@ export interface CheckersStoredGame {
   /** pertains to the FIFO. Towards tail */
   afterIndex?: string;
   deadline?: string;
+  winner?: string;
 }
 
 export interface CheckersSystemInfo {
