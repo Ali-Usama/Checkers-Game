@@ -18,6 +18,7 @@ export interface StoredGame {
   deadline: string;
   winner: string;
   wager: number;
+  denom: string;
 }
 
 function createBaseStoredGame(): StoredGame {
@@ -33,6 +34,7 @@ function createBaseStoredGame(): StoredGame {
     deadline: "",
     winner: "",
     wager: 0,
+    denom: "",
   };
 }
 
@@ -70,6 +72,9 @@ export const StoredGame = {
     }
     if (message.wager !== 0) {
       writer.uint32(88).uint64(message.wager);
+    }
+    if (message.denom !== "") {
+      writer.uint32(98).string(message.denom);
     }
     return writer;
   },
@@ -114,6 +119,9 @@ export const StoredGame = {
         case 11:
           message.wager = longToNumber(reader.uint64() as Long);
           break;
+        case 12:
+          message.denom = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -135,6 +143,7 @@ export const StoredGame = {
       deadline: isSet(object.deadline) ? String(object.deadline) : "",
       winner: isSet(object.winner) ? String(object.winner) : "",
       wager: isSet(object.wager) ? Number(object.wager) : 0,
+      denom: isSet(object.denom) ? String(object.denom) : "",
     };
   },
 
@@ -151,6 +160,7 @@ export const StoredGame = {
     message.deadline !== undefined && (obj.deadline = message.deadline);
     message.winner !== undefined && (obj.winner = message.winner);
     message.wager !== undefined && (obj.wager = Math.round(message.wager));
+    message.denom !== undefined && (obj.denom = message.denom);
     return obj;
   },
 
@@ -167,6 +177,7 @@ export const StoredGame = {
     message.deadline = object.deadline ?? "";
     message.winner = object.winner ?? "";
     message.wager = object.wager ?? 0;
+    message.denom = object.denom ?? "";
     return message;
   },
 };

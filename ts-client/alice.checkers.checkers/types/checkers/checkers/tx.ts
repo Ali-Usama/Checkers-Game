@@ -9,6 +9,7 @@ export interface MsgCreateGame {
   black: string;
   red: string;
   wager: number;
+  denom: string;
 }
 
 export interface MsgCreateGameResponse {
@@ -39,7 +40,7 @@ export interface MsgRejectGameResponse {
 }
 
 function createBaseMsgCreateGame(): MsgCreateGame {
-  return { creator: "", black: "", red: "", wager: 0 };
+  return { creator: "", black: "", red: "", wager: 0, denom: "" };
 }
 
 export const MsgCreateGame = {
@@ -55,6 +56,9 @@ export const MsgCreateGame = {
     }
     if (message.wager !== 0) {
       writer.uint32(32).uint64(message.wager);
+    }
+    if (message.denom !== "") {
+      writer.uint32(42).string(message.denom);
     }
     return writer;
   },
@@ -78,6 +82,9 @@ export const MsgCreateGame = {
         case 4:
           message.wager = longToNumber(reader.uint64() as Long);
           break;
+        case 5:
+          message.denom = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -92,6 +99,7 @@ export const MsgCreateGame = {
       black: isSet(object.black) ? String(object.black) : "",
       red: isSet(object.red) ? String(object.red) : "",
       wager: isSet(object.wager) ? Number(object.wager) : 0,
+      denom: isSet(object.denom) ? String(object.denom) : "",
     };
   },
 
@@ -101,6 +109,7 @@ export const MsgCreateGame = {
     message.black !== undefined && (obj.black = message.black);
     message.red !== undefined && (obj.red = message.red);
     message.wager !== undefined && (obj.wager = Math.round(message.wager));
+    message.denom !== undefined && (obj.denom = message.denom);
     return obj;
   },
 
@@ -110,6 +119,7 @@ export const MsgCreateGame = {
     message.black = object.black ?? "";
     message.red = object.red ?? "";
     message.wager = object.wager ?? 0;
+    message.denom = object.denom ?? "";
     return message;
   },
 };
