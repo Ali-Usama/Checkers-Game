@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-func (storedGame StoredGame) GetBlackAddress() (black sdk.Address, err error) {
+func (storedGame StoredGame) GetBlackAddress() (black sdk.AccAddress, err error) {
 	black, errBlack := sdk.AccAddressFromBech32(storedGame.Black)
 	return black, sdkerrors.Wrapf(errBlack, ErrInvalidBlack.Error(), storedGame.Black)
 }
 
-func (storedGame StoredGame) GetRedAddress() (red sdk.Address, err error) {
+func (storedGame StoredGame) GetRedAddress() (red sdk.AccAddress, err error) {
 	red, errRed := sdk.AccAddressFromBech32(storedGame.Red)
 	return red, sdkerrors.Wrapf(errRed, ErrInvalidRed.Error(), storedGame.Red)
 }
@@ -60,7 +60,7 @@ func (storedGame *StoredGame) GetDeadlineAsTime() (deadline time.Time, err error
 }
 
 // GetPlayerAddress a helper function to get the winner's address
-func (storedGame StoredGame) GetPlayerAddress(color string) (address sdk.Address, found bool, err error) {
+func (storedGame StoredGame) GetPlayerAddress(color string) (address sdk.AccAddress, found bool, err error) {
 	black, err := storedGame.GetBlackAddress()
 	if err != nil {
 		return nil, false, err
@@ -71,14 +71,14 @@ func (storedGame StoredGame) GetPlayerAddress(color string) (address sdk.Address
 		return nil, false, err
 	}
 
-	address, found = map[string]sdk.Address{
+	address, found = map[string]sdk.AccAddress{
 		rules.PieceStrings[rules.BLACK_PLAYER]: black,
 		rules.PieceStrings[rules.RED_PLAYER]:   red,
 	}[color]
 	return address, found, nil
 }
 
-func (storedGame StoredGame) GetWinnerAddress() (address sdk.Address, found bool, err error) {
+func (storedGame StoredGame) GetWinnerAddress() (address sdk.AccAddress, found bool, err error) {
 	return storedGame.GetPlayerAddress(storedGame.Winner)
 }
 
