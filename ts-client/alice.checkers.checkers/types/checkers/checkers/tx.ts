@@ -8,6 +8,7 @@ export interface MsgCreateGame {
   creator: string;
   black: string;
   red: string;
+  wager: number;
 }
 
 export interface MsgCreateGameResponse {
@@ -38,7 +39,7 @@ export interface MsgRejectGameResponse {
 }
 
 function createBaseMsgCreateGame(): MsgCreateGame {
-  return { creator: "", black: "", red: "" };
+  return { creator: "", black: "", red: "", wager: 0 };
 }
 
 export const MsgCreateGame = {
@@ -51,6 +52,9 @@ export const MsgCreateGame = {
     }
     if (message.red !== "") {
       writer.uint32(26).string(message.red);
+    }
+    if (message.wager !== 0) {
+      writer.uint32(32).uint64(message.wager);
     }
     return writer;
   },
@@ -71,6 +75,9 @@ export const MsgCreateGame = {
         case 3:
           message.red = reader.string();
           break;
+        case 4:
+          message.wager = longToNumber(reader.uint64() as Long);
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -84,6 +91,7 @@ export const MsgCreateGame = {
       creator: isSet(object.creator) ? String(object.creator) : "",
       black: isSet(object.black) ? String(object.black) : "",
       red: isSet(object.red) ? String(object.red) : "",
+      wager: isSet(object.wager) ? Number(object.wager) : 0,
     };
   },
 
@@ -92,6 +100,7 @@ export const MsgCreateGame = {
     message.creator !== undefined && (obj.creator = message.creator);
     message.black !== undefined && (obj.black = message.black);
     message.red !== undefined && (obj.red = message.red);
+    message.wager !== undefined && (obj.wager = Math.round(message.wager));
     return obj;
   },
 
@@ -100,6 +109,7 @@ export const MsgCreateGame = {
     message.creator = object.creator ?? "";
     message.black = object.black ?? "";
     message.red = object.red ?? "";
+    message.wager = object.wager ?? 0;
     return message;
   },
 };
